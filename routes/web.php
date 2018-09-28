@@ -19,4 +19,6 @@ Route::get('/', function () {
 Route::group(['prefix' => 'member', 'middleware' => 'api_auth'], function() {
     Route::post("/create", "Member\UserController@create");
     Route::get("/list", "Member\UserController@userList");
+    Route::put("/editUserPassword", "Member\UserController@editUserPassword");
+    Route::delete("/deleteUser", "Member\UserController@deleteUser");
 });

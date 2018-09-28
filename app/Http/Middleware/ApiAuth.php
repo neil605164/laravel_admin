@@ -25,14 +25,14 @@ class ApiAuth
         if(!$request->has("api_token")){
             $result["Result"] = false;
             $result["Message"] = "Api token is not exist";
-            return response()->json($result);
+            return response()->json($result, 401);
         }
 
         $api_key = $request->input("api_token");
         if($api_key != "yjo4rup4eji42k71j6hji4i") {
             $result["Result"] = false;
             $result["Message"] = "Api token is wrong";
-            return response()->json($result);
+            return response()->json($result, 401);
         }
 
 

@@ -38,7 +38,46 @@ class UserController extends Controller
         return response()->json($serviceResult);
     }
 
+    /**
+     * 取用戶清單
+     */
     public function userList() {
+        // 執行 DB 動作
+        $serviceResult = $this->service->GetUserList();
 
+        return response()->json($serviceResult);
+    }
+
+    /**
+     * 變更使用者密碼
+     */
+    public function editUserPassword() {
+        // 取參數
+        $data = $this->getParams([
+            "username", "password"
+        ]);
+
+        // 密碼加密
+        $data["password"] = sha1($data["password"]);
+
+        // 執行 DB 動作
+        $serviceResult = $this->service->EditUserPassword($data);
+
+        return response()->json($serviceResult);
+    }
+
+    /**
+     * 刪除帳號
+     */
+    public function deleteUser() {
+        // 取參數
+        $data = $this->getParams([
+            "username"
+        ]);
+
+        // 執行 DB 動作
+        $serviceResult = $this->service->DeleteUser($data);
+
+        return response()->json($serviceResult);
     }
 }
